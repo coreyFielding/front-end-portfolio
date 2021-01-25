@@ -2,7 +2,7 @@ import React from "react"
 
 import Layout from "../components/layout/layout"
 import SEO from "../components/seo"
-import Who from '../components/who'
+import AuthorBlock from "../blocks/author-block"
 import { graphql, Link } from 'gatsby'
 
 export const query = graphql`
@@ -10,7 +10,6 @@ export const query = graphql`
     allSitePage {
       nodes {
         path
-        isCreatedByStatefulCreatePages
       }
     }
     site {
@@ -26,7 +25,7 @@ const IndexPage = ({data}) => {
     return (
         <Layout>
             <SEO title="Home"/>
-            <Who />
+            <AuthorBlock />
             <div>
                 {
                     pages.map((page) => (
