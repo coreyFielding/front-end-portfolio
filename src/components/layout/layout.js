@@ -4,7 +4,6 @@ import "./layout.css"
 
 
 export default ({ children }) => {
-    console.log(children)
     return (
         <div>
             <Header/>
