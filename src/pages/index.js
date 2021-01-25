@@ -21,7 +21,6 @@ export const query = graphql`
 `
 
 const IndexPage = ({data}) => {
-    console.log(data)
     const pages = data.allSitePage.nodes
     return (
         <Layout>

@@ -25,6 +25,7 @@ module.exports = {
         projectId: "8p7swc8i",
         dataset: "production"
       }
-    }
+    },
+    `gatsby-plugin-postcss`
   ],
 }
