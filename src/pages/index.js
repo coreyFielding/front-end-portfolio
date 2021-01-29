@@ -1,42 +1,41 @@
 import React from "react"
-
 import Layout from "../components/layout/layout"
 import SEO from "../components/seo"
-import AuthorBlock from "../blocks/author-block"
 import { graphql, Link } from 'gatsby'
 
-export const query = graphql`
-  {
-    allSitePage {
-      nodes {
-        path
-      }
-    }
-    site {
-      siteMetadata {
-        title
-      }
-    }
-  }
-`
+// Home page
+export default ({ data }) => {
+    const {allSitePage} = data
+    const pageNodes = (data || {}) ? allSitePage.edges.map(edge => edge.node) : []
 
-const IndexPage = ({data}) => {
-    const pages = data.allSitePage.nodes
     return (
         <Layout>
             <SEO title="Home"/>
-            <AuthorBlock />
+            home page
             <div>
                 {
-                    pages.map((page) => (
-                        <Link key={page.path} to={page.path}>
-                            <p>{page.path}</p>
-                        </Link>
-                    ))
+                    pageNodes && pageNodes.map((page) => {
+                        return page.path !== '/' && (
+                            <Link key={page.path} to={page.path}>
+                                <p>{page.path}</p>
+                            </Link>
+                        )
+                    })
                 }
             </div>
         </Layout>
     )
 }
 
-export default IndexPage
+export const query = graphql`
+  query IndexPageQuery {
+    allSitePage {
+      edges {
+        node {
+            id
+            path
+        }
+      }
+    }
+  }
+`
