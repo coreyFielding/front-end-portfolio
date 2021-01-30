@@ -1,13 +1,15 @@
 import React from 'react'
 import { graphql } from "gatsby"
 import Layout from '../components/layout'
+import HeroBlock from '../blocks/hero-block'
+import parseData from '../utils/parse-block'
 
 // Template for all pages
 export default ({data}) => {
-    const {hero} = data.allSanityProject.edges[0].node
+    const hero = parseData(data.allSanityProject.edges[0].node.hero)
     return (
         <Layout>
-            <div>{hero.hero_title}</div>
+            <HeroBlock heroData={hero}/>
         </Layout>
     )
 }
@@ -15,18 +17,32 @@ export default ({data}) => {
 export const query = graphql`
 {
     allSanityProject {
-        edges {
-          node {
-            hero {
+      edges {
+        node {
+          hero {
+            _key
+            _type
+            hero_title
+            hero_subtitle
+            columns {
               _key
               _type
-              hero_title
-              hero_subtitle
-              _rawImage
               _rawColumns
+            }
+            image {
+              asset {
+                localFile {
+                  childImageSharp {
+                    fixed(width: 300, height: 300) {
+                        src
+                    }
+                  }
+                }
+              }
             }
           }
         }
       }
     }
+  }
 `

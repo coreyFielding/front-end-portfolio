@@ -1,5 +1,5 @@
 import {graphql, useStaticQuery} from "gatsby";
-import parseBlockData from '../../utils/parse-blocks'
+import parseBlockData from '../../utils/parse-block'
 
 export default () => {
     const query = useStaticQuery(graphql`

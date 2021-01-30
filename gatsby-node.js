@@ -8,7 +8,6 @@ const createPages = ({data} = [], template, actions) => {
     if (data.errors) throw data.errors
 
     pageEdges.map((node) => {
-        console.log(node.id)
         createPage({
             path: `${node.path}`,
             component: pageTemplate,

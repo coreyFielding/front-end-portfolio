@@ -34,6 +34,9 @@ module.exports = {
         allExtensions: true,
       },
     },
-    `gatsby-plugin-postcss`
+    `gatsby-plugin-postcss`,
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
+    `gatsby-source-sanity-transform-images`
   ],
 }
