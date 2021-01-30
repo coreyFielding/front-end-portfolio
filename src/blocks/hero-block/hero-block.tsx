@@ -1,34 +1,11 @@
 import React from "react"
+import Img from "gatsby-image"
 
-type HeroBlockProps = {
-    block: {
-        hero: {
-            hero_title: string
-            hero_subtitle: string
-            columns: any[]
-        }
-    }
-}
-
-const parseHeroBlock = ({block}: HeroBlockProps) => {
-    return {
-        title: block.hero.hero_title,
-        subtitle: block.hero.hero_subtitle,
-        columns: block.hero.columns.map((column) => ({
-            title: column.column_title,
-            text: column.column_subTitle,
-            icon: column.columnButtonIcon,
-            buttonUrl: column.columnButtonUrl,
-            buttonText: column.columnButtonText,
-        })),
-    }
-}
-
-const HeroTitle = ({title, subtitle}) => (
-    <div className="row justify-center text-center">
-        <div className="col col-lg-12">
+const HeroTitle = ({title, text}) => (
+    <div className="flex items-center">
+        <div className="text-center">
             <h1 className="text-white mt-0 lg:mt-4 mb-4">{title}</h1>
-            <p className="text-white h5 font-weight-normal opacity-8 mb-4 lg:mb-6">{subtitle}</p>
+            <p className="text-white h5 font-weight-normal opacity-8 mb-4 lg:mb-6">{text}</p>
         </div>
     </div>
 )
@@ -36,12 +13,20 @@ const HeroTitle = ({title, subtitle}) => (
 type HeroColumnProps = {
     title: string
     text: string
+    buttonText: string
+    buttonUrl: string
 }
 
 const ColumnCard = (props: HeroColumnProps) => {
-    const {title, text} = props
+    const {title, text, buttonText, buttonUrl} = props
     return (
-        <div></div>
+        <div>
+            <h4>{title}</h4>
+            {text && (<p>{text}</p>)}
+            <a href={buttonUrl} >
+                {buttonText}
+            </a>
+        </div>
     )
 }
 
@@ -55,12 +40,43 @@ const HeroColumn = (props: HeroColumnProps) => {
         )
 }
 
-export default ({block}) => {
-    const {title, subtitle} = parseHeroBlock(block)
+type HeroBlockProps = {
+    heroData: {
+        title: string
+        text: string
+        columns: any[]
+        image: {_ref: string}
+    }
+}
+
+export default ({heroData}: HeroBlockProps) => {
+    const {
+        title,
+        text,
+        columns,
+        image
+    } = heroData
+
+    const heroImg = image.asset.localFile.childImageSharp.fixed
+    console.log(heroImg)
     return (
-        <section className="py-0 md:py-3 lg:pt-6 lg:pb-5 bg-gray-200 relative min-h-screen">
+        <section className="flex items-center justify-center bg-gray-200 min-h-screen text-center">
             <div className="container">
-                <HeroTitle title={title} subtitle={subtitle} />
+                <Img fixed={heroImg.srcWebp} />
+                <div className="flex justify-center absolute inset-x-0 top-0 h-64">
+                   <HeroTitle title={title} text={text} />
+                </div>
+
+                <div className="flex items-center justify-between mt-5">
+                    {
+                        columns?.length && (
+                            columns.map((col, index) => (
+                                <HeroColumn key={index} {...col} />
+                            ))
+                        )
+                    }
+                </div>
+
             </div>
         </section>
     )
