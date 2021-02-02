@@ -24,6 +24,7 @@ export const query = graphql`
             _type
             hero_title
             hero_subtitle
+            background_colour
             columns {
               _key
               _type
