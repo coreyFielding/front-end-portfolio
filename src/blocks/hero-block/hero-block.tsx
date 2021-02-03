@@ -4,27 +4,39 @@ import { IHeroBlockProps, IHeroColumnProps } from "./types";
 import { columnCardClasses } from './styles'
 import HeroFooter from './hero-footer'
 import classnames from 'classnames'
+import { Spring } from "react-spring/renderprops";
+import VisibilitySensor from "../../components/visibilitySensor"
 
-const HeroTitle = (
-    {
-        title,
-        text,
-        body,
-        textColour,
-        textPositionX,
-    }) => (
-    <div className="flex p-3">
-        <div className={`text-${textPositionX}`}>
-            <h1 className={`text-9xl text-${textColour} mt-0 lg:mt-4 mb-4`} style={{fontFamily: 'League Spartan'}}>{title}</h1>
-            <h3 className={`font-normal text-${textColour} text-right opacity-8 mb-4 lg:mb-6`}>{text}</h3>
-            <div className="w-1/2 m-auto">
-                {
-                    body && (
-                        <span className="text-white">{body}</span>
-                    )
-                }
-            </div>
+const HeroTitle = (props) => {
+    const {titleText, titleSize, titleColour, posX} = props
+    return (
+        <div className={`${posX} w-full`}>
+            <h1 className={`${titleSize} ${titleColour} mt-0 lg:mt-4 mb-4`} style={{fontFamily: 'League Spartan'}}>{titleText}</h1>
         </div>
+    )
+}
+
+const HeroSubtitle = (props) => {
+    const {text, colour, size, posX} = props
+    return (
+        <div className={`${posX}`}>
+            <h3 className={`${size} ${colour} text-center opacity-8 mb-4 lg:mb-6`}>{text}</h3>
+        </div>
+    )
+}
+
+const HeroBody = (props) => {
+    const {body} = props
+
+    return (
+            body && (<span className="text-white">{body}</span>)
+    )
+}
+
+const HeroText = ({title, subtitle}) => (
+    <div className="absolute inset-x-0 top-80 h-64">
+        <HeroTitle {...title} />
+        <HeroSubtitle {...subtitle} />
     </div>
 )
 
@@ -53,18 +65,13 @@ const HeroColumn = (props: IHeroColumnProps) => {
 }
 
 export default (props: IHeroBlockProps) => {
-    console.log(props)
     const {
         title,
-        text,
-        textColour,
-        textPositionX,
-        textPositionY,
+        subtitle,
+        background,
         body,
         columns,
         image = null,
-        backgroundColour,
-        backgroundGradient
     } = props
 
     const heroFooter = {
@@ -87,37 +94,31 @@ export default (props: IHeroBlockProps) => {
 
     const heroImg = image?.asset.localFile.childImageSharp.fixed
     const heroClasses = classnames(
-        {[`bg-${backgroundColour}`]: backgroundColour},
-        {[`${backgroundGradient}`]: backgroundGradient},
+        {[`bg-${background.background_colour}`]: background.background_colour},
+        {[`${background.gradient_direction} ${background.background_gradient}`]: background.background_gradient},
         "flex",
         "items-center",
         "justify-center",
         "min-h-screen",
-        "text-center"
+        "text-center",
         )
     return (
-        <section className={heroClasses}>
-            <div className="container">
-                {heroImg && <Img fixed={heroImg.srcWebp} />}
-                <div className="flex absolute inset-x-0 top-64 h-64">
-                   <HeroTitle
-                       title={title}
-                       text={text}
-                       body={body}
-                       textColour={textColour}
-                       textPositionX={textPositionX}/>
-                </div>
-                <div className="flex top-40 items-center justify-between relative">
-                    {
-                        columns?.length && (
-                            columns.map((col, index) => (
-                                <HeroColumn key={index} {...col} />
-                            ))
-                        )
-                    }
-                </div>
-                <HeroFooter {...heroFooter}/>
+
+    <section className={heroClasses}>
+        <div className="container">
+            {heroImg && <Img fixed={heroImg.srcWebp} />}
+            <HeroText title={title} subtitle={subtitle}/>
+            <div className="flex top-40 items-center justify-between relative">
+                {
+                    columns?.length && (
+                        columns.map((col, index) => (
+                            <HeroColumn key={index} {...col} />
+                        ))
+                    )
+                }
             </div>
-        </section>
+            <HeroFooter {...heroFooter}/>
+        </div>
+    </section>
     )
 }

@@ -1,14 +1,10 @@
 export interface IHeroBlockProps {
-    title: string
-    text: string
-    textColour: string
-    textPositionX: string
-    textPositionY: string
+    title: any
+    subtitle: any
+    background: any
     body: string
     columns: any[]
     image: {_ref: string}
-    backgroundColour: string
-    backgroundGradient: string
     scrollBtnText: string
     scrollBtnUrl: string
     scrollBtnIcon: boolean

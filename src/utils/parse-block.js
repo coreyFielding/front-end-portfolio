@@ -4,12 +4,11 @@ export const BlockType = {
 }
 
 export const parseHeroBlock = (block) => {
+    console.log(block)
     return {
         title: block.hero_title,
-        text: block.hero_subtitle,
-        textColour: block.hero_textColour,
-        textPositionX: block.hero_textPositionX,
-        textPositionY: block.hero_textPositionY,
+        subtitle: block.hero_subtitle,
+        background: block.hero_background,
         body: block.hero_body,
         columns: block.columns?._rawColumns.map((column) => ({
             title: column.column_title,
@@ -18,8 +17,6 @@ export const parseHeroBlock = (block) => {
             buttonUrl: column.column_buttonUrl
         })),
         image: block.image,
-        backgroundColour: block.background_colour,
-        backgroundGradient: block.background_gradient,
         scrollBtnText: block.hero_scrollBtnText,
         scrollBtnUrl: block.hero_scrollBtnUrl,
         scrollBtnIcon: block.hero_scrollBtnIcon,
@@ -46,9 +43,7 @@ const parsers = new Map([
 
 export default (data) => {
     const block = data
-    console.log(block)
     if (parsers.has(block._type)) {
-        console.log('has type')
         return parsers.get(block._type)(data)
     }
 }

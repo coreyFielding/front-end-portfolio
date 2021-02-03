@@ -4,10 +4,10 @@ import classnames from 'classnames'
 
 const WorkStatus = ({status}) => {
     const statusClasses = classnames(
-        "bg-green-500",
+        "bg-green-400",
         "bg-opacity-30",
         "rounded-full",
-        "text-green-300",
+        "text-green-600",
         "p-1",
         "px-2",
         "text-xs",
