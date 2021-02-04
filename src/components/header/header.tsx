@@ -88,12 +88,13 @@ export default () => (
                         </svg>
                     </button>
                 </div>
+                corey fielding
 
-                {/*  Nav links  */}
-                <NavLinks />
+                {/*/!*  Nav links  *!/*/}
+                {/*<NavLinks />*/}
 
-                {/*  Socials  */}
-                <SocialLinks />
+                {/*/!*  Socials  *!/*/}
+                {/*<SocialLinks />*/}
             </div>
         </div>
     </nav>
