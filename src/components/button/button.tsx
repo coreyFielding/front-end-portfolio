@@ -1,21 +1,34 @@
 import React from 'react'
 import classnames from "classnames"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import setupIconLibrary from "../../utils/setup-icon-library"
+setupIconLibrary()
 
 type ButtonProps = {
     children: any
     url: string
     shape: string
     colour: string
-    textColour: string
+    icon: string
     clickHandler: (event: any) => void
 }
-export default (props: ButtonProps) => {
-    const {url, colour, textColour, shape, clickHandler} = props
+export default (
+    {
+        url,
+        shape,
+        colour,
+        icon,
+        children
+    }: ButtonProps) => {
+
     const buttonClasses = classnames(
         {[`${shape}`]: shape},
-        {[`bg-${colour}-500`]: colour},
-        {[`hover:bg-${colour}-800`]: colour},
-        {[`text-${textColour}`]: textColour},
+        {[`${colour}`]: colour},
+        "text-cararra-50",
+        "hover:bg-azure-500",
+        "hover:shadow-md",
+        "transform",
+        "hover:-translate-y-1",
         "duration-300",
         "p-2",
         "py-1",
@@ -24,7 +37,10 @@ export default (props: ButtonProps) => {
 
     return (
         <a className={buttonClasses} href={url} role="button">
-            {props.children}
+            <span>
+                {children}
+                <FontAwesomeIcon icon={['fas', icon as any]} />
+            </span>
         </a>
     )
 }

@@ -10,6 +10,9 @@ export const parseHeroBlock = (block) => {
         subtitle: block.hero_subtitle,
         background: block.hero_background,
         body: block.hero_body,
+        quicklinks: block.quick_links,
+        scroll: block.hero_scroll,
+        socials: block.socials,
         columns: block.columns?._rawColumns.map((column) => ({
             title: column.column_title,
             text: column.column_subtext,
@@ -17,15 +20,7 @@ export const parseHeroBlock = (block) => {
             buttonUrl: column.column_buttonUrl
         })),
         image: block.image,
-        scrollBtnText: block.hero_scrollBtnText,
-        scrollBtnUrl: block.hero_scrollBtnUrl,
-        scrollBtnIcon: block.hero_scrollBtnIcon,
-        showContactBtn: block.hero_contactBtn,
-        contactBtnText: block.hero_contactBtnText,
-        contactBtnUrl: block.hero_contactBtnUrl,
-        contactBtnColour: block.hero_contactBtnColour,
-        contactBtnShape: block.hero_contactBtnShape,
-        status: block.workStatus,
+        status: block.status,
     }
 }
 

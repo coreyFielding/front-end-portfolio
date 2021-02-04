@@ -8,7 +8,6 @@ import parseData from '../utils/parse-block'
 
 // Landing page
 export default ({ data }) => {
-    console.log(data)
     const {allSitePage} = data
     const pageNodes = (data || {}) ? allSitePage.edges.map(edge => edge.node) : []
     const heroBlock = (data || {}) ? parseData(data.allSanityLanding.edges[0].node._rawBlocks[0]) : []

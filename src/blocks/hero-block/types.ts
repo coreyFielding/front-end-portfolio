@@ -1,8 +1,29 @@
+interface IHeroTitle {
+    text: string
+    size: string
+    colour: string
+    posX: string
+}
+interface IHeroSubtitle {
+    text: string
+    size: string
+    colour: string
+    posX: string
+}
+
+interface IHeroBackground {
+    gradient: string
+    direction: string
+}
+
 export interface IHeroBlockProps {
-    title: any
-    subtitle: any
+    title: IHeroTitle
+    subtitle: IHeroSubtitle
     background: any
     body: string
+    quicklinks: any[]
+    scroll: any
+    socials: any
     columns: any[]
     image: {_ref: string}
     scrollBtnText: string
