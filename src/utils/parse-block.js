@@ -1,5 +1,6 @@
 export const BlockType = {
     HERO: "hero",
+    SKILLS: "skills",
     ABOUT: "about"
 }
 
@@ -11,6 +12,7 @@ export const parseHeroBlock = (block) => {
         background: block.hero_background,
         body: block.hero_body,
         quicklinks: block.quick_links,
+        image: block.hero_image,
         scroll: block.hero_scroll,
         socials: block.socials,
         columns: block.columns?._rawColumns.map((column) => ({
@@ -19,24 +21,28 @@ export const parseHeroBlock = (block) => {
             buttonText: column.column_buttonText,
             buttonUrl: column.column_buttonUrl
         })),
-        image: block.image,
         status: block.status,
     }
 }
 
-export const parseAboutBlock = (block) => {
+export const parseSkillsBlock = (block) => {
+    console.log(block)
     return {
-        bio: block.about_bio,
-        avatar: block.about_avatar
+        skillColumns: block.skills_grid.map((column) => ({
+            title: column.title,
+            level: column.level,
+            image: column.image
+        }))
     }
 }
 
 const parsers = new Map([
     [BlockType.HERO, parseHeroBlock],
-    [BlockType.ABOUT, parseAboutBlock],
+    [BlockType.SKILLS, parseSkillsBlock]
 ])
 
 export default (data) => {
+    console.log(data)
     const block = data
     if (parsers.has(block._type)) {
         return parsers.get(block._type)(data)

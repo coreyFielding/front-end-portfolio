@@ -5,10 +5,12 @@ export default (
     {
        duration = 1000,
        delay = 0,
+       float = false,
+       classes,
        children,
     }) => {
     return (
-        <Wrapper style={{animationDuration: duration + 'ms', animationDelay: delay + 'ms'}}>
+        <Wrapper className={classes} style={{animationDuration: duration + 'ms', animationDelay: delay + 'ms'}} float={float}>
             {children}
         </Wrapper>
     )
