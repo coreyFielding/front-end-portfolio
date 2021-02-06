@@ -1,27 +1,23 @@
-import React from "react"
-import Img from "gatsby-image"
+import React, {useEffect, useState} from "react"
 import { IHeroBlockProps, IHeroColumnProps } from "./types";
-import { columnCardClasses, heroScrollClasses, socialLinkClasses, heroFooterClasses } from './classes'
+import { columnCardClasses, heroScrollClasses, socialLinkClasses, statusClasses, heroImageClasses } from './classes'
 import './styles.css'
 import Button from '../../components/button'
+import Image from '../../components/Image'
 import classnames from 'classnames'
-import FadeIn from '../../components/animation/fadeScroll/fade-scroll'
+import FadeScroll from '../../components/animation/fadeScroll/fade-scroll'
 import FadeMount from '../../components/animation/fadeMount/fade-mount'
-import { Spring } from "react-spring/renderprops";
-import VisibilitySensor from "../../components/visibilitySensor"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import setupIconLibrary from "../../utils/setup-icon-library"
 setupIconLibrary()
 
-const HeroTitle = ({text, size, colour, posX}) => (
-    <div className={`${posX} w-full`}>
-        <h1 className={`${size} ${colour} mt-0 lg:mt-4 mb-4`} style={{fontFamily: 'League Spartan'}}>{text}</h1>
-    </div>
+const HeroTitle = ({text, size, weight, colour}) => (
+        <h1 className={`text-lg text-left sm:text-center sm:${size} ${colour} mt-0 ${weight}`} style={{fontFamily: 'League Spartan'}}>{text}</h1>
 )
 
-const HeroSubtitle = ({text, colour, size, posX}) => (
-    <div className={`${posX}`}>
-        <h3 className={`${size} ${colour} text-center opacity-8 mb-4 lg:mb-6`}>{text}</h3>
+const HeroSubtitle = ({text, colour, size}) => (
+    <div>
+        <h3 className={`${size} ${colour} text-left sm:text-center`}>{text}</h3>
     </div>
 )
 
@@ -33,70 +29,76 @@ const HeroBody = (props) => {
     )
 }
 
-const HeroText = ({title, subtitle, body}) => (
-    <FadeMount delay={300}>
-        <div className="absolute inset-x-0 top-80 h-64">
+const HeroText = ({title, subtitle, body}) => {
+    const heroTextClasses = classnames(
+        "mx-3",
+        "sm:mx-0",
+        "sm:col-start-1",
+        "sm:col-end-4",
+        "row-start-3",
+        "z-10",
+    )
+    return (
+        <FadeMount delay={800} classes={heroTextClasses} float={true}>
             <HeroTitle {...title} />
             <HeroSubtitle {...subtitle} />
-            <HeroBody {...body}/>
-        </div>
-    </FadeMount>
-)
+        </FadeMount>
+    )
+}
 
-const HeroQuickLinks = ({links}) => (
-    <FadeMount delay={800}>
-        <div className="relative inset-x-0 top-20">
-            {
-                links.map((link, index) => (
-                    <span className="mx-3">
-                    <Button key={index} {...link}>{link.text}</Button>
-                </span>
+const HeroQuickLinks = ({links}) => {
+    const quicklinkClasses = classnames(
+        "row-start-5",
+        "sm:col-start-1",
+        "sm:col-end-4",
+        "sm:row-start-6",
+        "z-10",
+    )
+    return (
+        links.map((link, index) => (
+            <FadeMount classes={quicklinkClasses} delay={800} float={true}>
+                <Button key={index} {...link}>
+                    {link.text}
+                    <FontAwesomeIcon icon={['fas', link.icon as any]} className="ml-2"/>
+                </Button>
+            </FadeMount>
+        ))
+        )
 
-                ))
-            }
-        </div>
-    </FadeMount>
-)
+}
 
 const HeroSocials = ({links}) => (
-    <div className="absolute right-0">
+    <div className={socialLinkClasses}>
         {
-            links.map((link) => (
-                <a href={link.url} className={`hover:text-${link.hoverColour} ${socialLinkClasses}`}>
-                    <FontAwesomeIcon icon={['fab', link.icon as any]} />
-                </a>
+            links.map((link, index) => (
+                <FadeMount classes={socialLinkClasses} delay={1000 * (index + 1)}>
+                    <a href={link.url} className={`hover:text-${link.hoverColour}`}>
+                        <FontAwesomeIcon icon={['fab', link.icon as any]} />
+                    </a>
+                </FadeMount>
             ))
         }
     </div>
 )
 
-const HeroScroll = ({url, effect}) => (
-    effect === 'mouse' ? (
-        <a id="scroll" href={url} className={heroScrollClasses}><span></span></a>
-    ) : null
-)
-
-const WorkStatus = ({status}) => {
-    const statusClasses = classnames(
-        "bg-green-700",
-        "bg-opacity-30",
-        "rounded-full",
-        "text-green-900",
-        "px-2",
-        "mt-1",
-        "text-xs",
-        "w-36",
-        "h-6",
-        "flex"
-    )
+const HeroScroll = ({url, effect, ref}) => {
+    const smoothScroll = (ref) => {
+        //ref.current.scrollIntoView({behavior: 'smooth'})
+    }
 
     return (
-        <div className={statusClasses}>
-            <span className="w-2 h-2 bg-lime-400 rounded-full inline-block m-1 mt-2" />
-            <p>{status}</p>
-        </div>
+        effect === 'mouse' ? (
+            <a id="scroll" onClick={() => smoothScroll(ref)} href={url} className={heroScrollClasses}><span></span></a>
+        ) : null
     )
 }
+
+const WorkStatus = ({status}) => (
+    <div className={statusClasses}>
+        <span className="w-2 h-2 bg-lime-400 rounded-full m-1 mt-2"/>
+        <p>{status}</p>
+    </div>
+)
 
 const ColumnCard = (props: IHeroColumnProps) => {
     const {title, text, buttonText, buttonUrl} = props
@@ -122,57 +124,49 @@ const HeroColumn = (props: IHeroColumnProps) => {
         )
 }
 
-export default (props: IHeroBlockProps) => {
-    const {
+export default (
+    {
         title,
         subtitle,
         body,
         background,
         columns,
+        image,
         quicklinks,
         socials,
         scroll,
         status,
-        image = null,
-    } = props
+        skillsRef,
+    }: IHeroBlockProps) => {
 
-    const heroImg = image?.asset.localFile.childImageSharp.fixed
     const heroClasses = classnames(
         {[`bg-${background.background_colour}`]: background.background_colour},
         {[`${background.gradient_direction} ${background.background_gradient}`]: background.background_gradient},
-        "flex",
-        "items-center",
-        "justify-center",
         "min-h-screen",
+        "min-w-screen",
         "text-center",
-        )
+        "grid",
+        "auto-cols-min",
+        "sm:grid-cols-6",
+        "grid-rows-6",
+    )
+
     return (
-
-        <FadeIn>
-            <section className={heroClasses}>
-                <div className="container">
-                    {heroImg && <Img fixed={heroImg.srcWebp} />}
-                    <HeroText title={title} subtitle={subtitle} body={body}/>
-                        <HeroQuickLinks links={quicklinks}/>
-                    <div className="flex top-40 items-center justify-between relative">
-                        {
-                            columns?.length && (
-                                columns.map((col, index) => (
-                                    <HeroColumn key={index} {...col} />
-                                ))
-                            )
-                        }
-                    </div>
-
-                    <HeroSocials links={socials}/>
-
-                    <div className={heroFooterClasses}>
-                        <WorkStatus status={status}/>
-                        <HeroScroll {...scroll}/>
-                    </div>
-
-                </div>
-            </section>
-        </FadeIn>
+        <FadeScroll id="hero-block" blockClasses={heroClasses}>
+            <WorkStatus status={status}/>
+            <HeroText title={title} subtitle={subtitle} body={body}/>
+            <HeroQuickLinks links={quicklinks}/>
+            <Image image={image} imageClasses={heroImageClasses} delay={1000} />
+            <div className="items-center justify-between relative">
+                {
+                    columns?.length && (
+                        columns.map((col, index) => (
+                            <HeroColumn key={index} {...col} />
+                        ))
+                    )
+                }
+            </div>
+            <HeroSocials links={socials}/>
+        </FadeScroll>
     )
 }

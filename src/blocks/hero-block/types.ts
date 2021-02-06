@@ -16,31 +16,34 @@ interface IHeroBackground {
     direction: string
 }
 
+interface IHeroQuicklinks {
+    text: string
+    icon: string
+}
+
+interface IHeroSocials {
+    url: string
+    icon: string
+}
+
+interface IHeroColumn {
+    title: string
+    text: string
+    buttonText: string
+    buttonUrl: string
+}
+
 export interface IHeroBlockProps {
     title: IHeroTitle
     subtitle: IHeroSubtitle
     background: any
     body: string
-    quicklinks: any[]
+    quicklinks: IHeroQuicklinks[]
     scroll: any
-    socials: any
-    columns: any[]
-    image: {_ref: string}
-    scrollBtnText: string
-    scrollBtnUrl: string
-    scrollBtnIcon: boolean
-    contactBtn: boolean
-    contactBtnText: string
-    contactBtnUrl: string
-    contactBtnColour: string
-    contactBtnShape: string
+    socials: IHeroSocials[]
+    columns: IHeroColumn[]
+    image: any
     status: string
-}
-
-export interface IHeroColumnProps {
-    title: string
-    text: string
-    buttonText: string
-    buttonUrl: string
+    skillsRef: any
 }
 

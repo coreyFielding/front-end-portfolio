@@ -31,23 +31,37 @@ export const heroScrollClasses = classnames(
 )
 
 export const socialLinkClasses = classnames(
-    "block",
-    "px-3",
-    "py-2",
+    "inline-block",
+    "p-3",
     "text-base",
     "font-medium",
     "hover:text-indigo-500",
     "transform",
-    "duration-200"
+    "duration-200",
+    "col-start-7",
+    "row-start-7",
 )
 
-export const heroFooterClasses = classnames(
-    "w-full",
-    "absolute",
-    "left-0",
-    "bottom-0",
+export const statusClasses = classnames(
+    "bg-green-700",
+    "bg-opacity-30",
+    "rounded-full",
+    "text-green-900",
     "px-2",
-    "grid",
-    "grid-cols-4",
-    "gap-x-32"
+    "m-1",
+    "text-xs",
+    "w-36",
+    "h-6",
+    "flex",
+    "col-start-1",
+    "row-start-1"
+)
+
+export const heroImageClasses = classnames(
+    "col-start-4",
+    "col-end-7",
+    "row-start-2",
+    "row-end-3",
+    "invisible",
+    "sm:visible"
 )

@@ -4,6 +4,24 @@ module.exports = {
   purge: ["./src/**/*.js", "./src/**/*.jsx", "./src/**/*.ts", "./src/**/*.tsx"],
   darkMode: false,
   theme: {
+      theme: {
+          screens: {
+              'sm': '640px',
+              // => @media (min-width: 640px) { ... }
+
+              'md': '768px',
+              // => @media (min-width: 768px) { ... }
+
+              'lg': '1024px',
+              // => @media (min-width: 1024px) { ... }
+
+              'xl': '1280px',
+              // => @media (min-width: 1280px) { ... }
+
+              '2xl': '1536px',
+              // => @media (min-width: 1536px) { ... }
+          }
+      },
       colors: {
         royal: {
           50: '#f3f4f5',
@@ -65,6 +83,18 @@ module.exports = {
               800: '#2d004e',
               900: '#250040'
           },
+          purple: {
+              50: '#f9f2f9',
+              100: '#f2e6f2',
+              200: '#dfbfdf',
+              300: '#cc99cc',
+              400: '#a64da6',
+              500: '#800080',
+              600: '#730073',
+              700: '#600060',
+              800: '#4d004d',
+              900: '#3f003f'
+          },
           cararra: {
               50: '#ffffff',
               100: '#fdfdfd',
@@ -93,7 +123,12 @@ module.exports = {
           skyLight: '#cfdef3'
       },
     fontSize: {
+      '7xl': '5rem',
+      '8xl': '6rem',
       '9xl': '7rem',
+        'lg': '5rem',
+       'md': '3rem',
+      'sm': '2rem',
       'xs': '0.8rem'
     },
     extend: {},

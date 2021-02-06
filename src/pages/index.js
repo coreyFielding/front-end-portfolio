@@ -1,26 +1,30 @@
-import React from "react"
+import React, {createRef} from "react"
 import Layout from "../components/layout/layout"
 import HeroBlock from "../blocks/hero-block"
-import AboutBlock from "../blocks/about-block"
+import SkillsBlock from "../blocks/skills-block"
 import SEO from "../components/seo"
 import { graphql, Link } from 'gatsby'
 import parseData from '../utils/parse-block'
+import styled from "styled-components";
+
+const Container = styled.div`
+`
 
 // Landing page
 export default ({ data }) => {
     const {allSitePage} = data
     const pageNodes = (data || {}) ? allSitePage.edges.map(edge => edge.node) : []
     const heroBlock = (data || {}) ? parseData(data.allSanityLanding.edges[0].node._rawBlocks[0]) : []
-    // const aboutBlock = (data || {}) ? parseData(data.allSanityAbout.edges[0].node) : []
+    const skillsBlock = (data || {}) ? parseData(data.allSanityLanding.edges[0].node._rawBlocks[1]) : []
     const pageLinks = pageNodes ? pageNodes.map((page) => ({path: page.path})) : []
+    const skillsRef = createRef();
 
     return (
         <Layout pageLinks={pageLinks}>
             <SEO title="Corey Fielding"/>
-            <div className="mt-0 w-full h-full">
-                <HeroBlock {...heroBlock} />
-                {/*<AboutBlock aboutData={aboutBlock}/>*/}
-
+            <Container>
+                <HeroBlock {...heroBlock} skillsRef={skillsRef} />
+                <SkillsBlock {...skillsBlock} ref={skillsRef}/>
                 {
                     pageNodes && pageNodes.map((page) => {
                         return page.path !== '/' && (
@@ -30,7 +34,7 @@ export default ({ data }) => {
                         )
                     })
                 }
-            </div>
+            </Container>
         </Layout>
     )
 }

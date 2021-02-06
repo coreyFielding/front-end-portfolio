@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import classnames from "classnames"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import setupIconLibrary from "../../utils/setup-icon-library"
@@ -17,18 +17,18 @@ export default (
         url,
         shape,
         colour,
-        icon,
         children
     }: ButtonProps) => {
 
+
+    const [hover, setHover] = useState(false)
+
     const buttonClasses = classnames(
         {[`${shape}`]: shape},
-        {[`${colour}`]: colour},
+        "bg-indigo-400",
         "text-cararra-50",
-        "hover:bg-azure-500",
         "hover:shadow-md",
-        "transform",
-        "hover:-translate-y-1",
+        "hover:bg-white",
         "duration-300",
         "p-2",
         "py-1",
@@ -36,10 +36,9 @@ export default (
     )
 
     return (
-        <a className={buttonClasses} href={url} role="button">
+        <a className={buttonClasses} href={url} role="button" onMouseEnter={() => setHover(!hover)}>
             <span>
                 {children}
-                <FontAwesomeIcon icon={['fas', icon as any]} />
             </span>
         </a>
     )
