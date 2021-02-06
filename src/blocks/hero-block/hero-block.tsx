@@ -59,7 +59,6 @@ const HeroQuickLinks = ({links}) => {
             <FadeMount classes={quicklinkClasses} delay={800} float={true}>
                 <Button key={index} {...link}>
                     {link.text}
-                    <FontAwesomeIcon icon={['fas', link.icon as any]} className="ml-2"/>
                 </Button>
             </FadeMount>
         ))

@@ -23,6 +23,8 @@ module.exports = {
           }
       },
       colors: {
+        black: '#000',
+        white: '#fff',
         royal: {
           50: '#f3f4f5',
           100: '#e8e9ea',
@@ -120,7 +122,13 @@ module.exports = {
               900: '#05417d'
           },
           skyDark: '#e0eafc',
-          skyLight: '#cfdef3'
+          skyLight: '#cfdef3',
+          react: '#61DBFB',
+          gatsby: '#8a4baf',
+          craft: '#E5422B',
+          bootstrap: '#563d7c',
+          graphql: '#e535ab',
+          typescript: '#007acc'
       },
     fontSize: {
       '7xl': '5rem',

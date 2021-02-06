@@ -1,5 +1,6 @@
 export const BlockType = {
     HERO: "hero",
+    PROJECT: "project",
     SKILLS: "skills",
     ABOUT: "about"
 }
@@ -25,8 +26,17 @@ export const parseHeroBlock = (block) => {
     }
 }
 
+export const parseProjectBlock = (block) => {
+    return {
+        title: block.title,
+        description: block.description,
+        tech_stack: block.tech_stack,
+        image: block.image,
+        button: block.button
+    }
+}
+
 export const parseSkillsBlock = (block) => {
-    console.log(block)
     return {
         skillColumns: block.skills_grid.map((column) => ({
             title: column.title,
@@ -38,11 +48,11 @@ export const parseSkillsBlock = (block) => {
 
 const parsers = new Map([
     [BlockType.HERO, parseHeroBlock],
+    [BlockType.PROJECT, parseProjectBlock],
     [BlockType.SKILLS, parseSkillsBlock]
 ])
 
 export default (data) => {
-    console.log(data)
     const block = data
     if (parsers.has(block._type)) {
         return parsers.get(block._type)(data)

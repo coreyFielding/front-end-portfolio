@@ -1,6 +1,7 @@
 import React, {createRef} from "react"
 import Layout from "../components/layout/layout"
 import HeroBlock from "../blocks/hero-block"
+import ProjectBlock from "../blocks/project-block"
 import SkillsBlock from "../blocks/skills-block"
 import SEO from "../components/seo"
 import { graphql, Link } from 'gatsby'
@@ -15,6 +16,7 @@ export default ({ data }) => {
     const {allSitePage} = data
     const pageNodes = (data || {}) ? allSitePage.edges.map(edge => edge.node) : []
     const heroBlock = (data || {}) ? parseData(data.allSanityLanding.edges[0].node._rawBlocks[0]) : []
+    const projectBlock = (data || {}) ? parseData(data.allSanityLanding.edges[0].node._rawBlocks[2]) : []
     const skillsBlock = (data || {}) ? parseData(data.allSanityLanding.edges[0].node._rawBlocks[1]) : []
     const pageLinks = pageNodes ? pageNodes.map((page) => ({path: page.path})) : []
     const skillsRef = createRef();
@@ -24,6 +26,7 @@ export default ({ data }) => {
             <SEO title="Corey Fielding"/>
             <Container>
                 <HeroBlock {...heroBlock} skillsRef={skillsRef} />
+                <ProjectBlock {...projectBlock} />
                 <SkillsBlock {...skillsBlock} ref={skillsRef}/>
                 {
                     pageNodes && pageNodes.map((page) => {
