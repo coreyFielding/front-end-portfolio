@@ -6,7 +6,6 @@ export const BlockType = {
 }
 
 export const parseHeroBlock = (block) => {
-    console.log(block)
     return {
         title: block.hero_title,
         subtitle: block.hero_subtitle,
@@ -26,12 +25,23 @@ export const parseHeroBlock = (block) => {
     }
 }
 
+export const parseAboutBlock = (block) => {
+    return {
+        profile: block.about_profile,
+        bio: block.about_bio,
+        avatar: block.about_avatar,
+        status: block.hire_status,
+        contact: block.contact_btn
+    }
+}
+
 export const parseProjectBlock = (block) => {
     return {
         title: block.title,
         description: block.description,
         tech_stack: block.tech_stack,
-        image: block.image,
+        image: block.project_img,
+        logo: block.company_logo,
         button: block.button
     }
 }
@@ -48,6 +58,7 @@ export const parseSkillsBlock = (block) => {
 
 const parsers = new Map([
     [BlockType.HERO, parseHeroBlock],
+    [BlockType.ABOUT, parseAboutBlock],
     [BlockType.PROJECT, parseProjectBlock],
     [BlockType.SKILLS, parseSkillsBlock]
 ])
