@@ -12,7 +12,7 @@ import setupIconLibrary from "../../utils/setup-icon-library"
 setupIconLibrary()
 
 const HeroTitle = ({text, size, weight, colour}) => (
-        <h1 className={`text-lg text-left sm:text-center sm:${size} ${colour} mt-0 ${weight}`} style={{fontFamily: 'League Spartan'}}>{text}</h1>
+    <h1 className={`text-lg text-left sm:text-center sm:${size} ${colour} mt-0 ${weight}`} style={{fontFamily: 'League Spartan'}}>{text}</h1>
 )
 
 const HeroSubtitle = ({text, colour, size}) => (
@@ -33,6 +33,7 @@ const HeroText = ({title, subtitle, body}) => {
     const heroTextClasses = classnames(
         "mx-3",
         "sm:mx-0",
+        "col-start-1",
         "sm:col-start-1",
         "sm:col-end-4",
         "row-start-3",
@@ -48,10 +49,11 @@ const HeroText = ({title, subtitle, body}) => {
 
 const HeroQuickLinks = ({links}) => {
     const quicklinkClasses = classnames(
-        "row-start-5",
+        "col-start-1",
+        "row-start-8",
         "sm:col-start-1",
         "sm:col-end-4",
-        "sm:row-start-6",
+        "sm:row-start-4",
         "z-10",
     )
     return (
@@ -91,13 +93,6 @@ const HeroScroll = ({url, effect, ref}) => {
         ) : null
     )
 }
-
-const WorkStatus = ({status}) => (
-    <div className={statusClasses}>
-        <span className="w-2 h-2 bg-lime-400 rounded-full m-1 mt-2"/>
-        <p>{status}</p>
-    </div>
-)
 
 const ColumnCard = (props: IHeroColumnProps) => {
     const {title, text, buttonText, buttonUrl} = props
@@ -146,13 +141,13 @@ export default (
         "text-center",
         "grid",
         "auto-cols-min",
+        "grid-rows-8",
+        "sm:grid-rows-4",
         "sm:grid-cols-6",
-        "grid-rows-6",
     )
 
     return (
         <FadeScroll id="hero-block" blockClasses={heroClasses}>
-            <WorkStatus status={status}/>
             <HeroText title={title} subtitle={subtitle} body={body}/>
             <HeroQuickLinks links={quicklinks}/>
             <Image image={image} imageClasses={heroImageClasses} delay={1000} />

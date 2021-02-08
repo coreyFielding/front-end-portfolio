@@ -6,7 +6,7 @@ setupIconLibrary()
 
 const pageLinks = [
     {name: "Home", path: "#hero-block"},
-    {name: "About", path: "#about-block"},
+    {name: "About", path: "#About-block"},
     {name: "Projects", path: "#project-block"},
     {name: "Resume", path: "#resume-block"},
     {name: "Contact", path: "#contact-block"}
