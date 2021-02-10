@@ -78,6 +78,8 @@ export default ({profile, bio, avatar, status, contact}: AboutBlockProps) => {
         "sm:mb-0",
         "sm:mx-0",
         "sm:shadow-lg",
+        "min-h-screen",
+        "sm:min-h-3/4",
         "rounded-md",
         "border",
         "sm:border-0",
@@ -88,7 +90,7 @@ export default ({profile, bio, avatar, status, contact}: AboutBlockProps) => {
         "bg-white"
     )
     return (
-        <section id="about-block" className="min-h-screen sm:min-h-3/4 flex justify-center">
+        <section id="about-block" className=" flex justify-center py-5">
             <div className={aboutCardClasses}>
                 <div className="grid justify-items-center">
                     <Image image={avatar.img} width={120} shape={avatar.shape}/>

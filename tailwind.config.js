@@ -4,39 +4,37 @@ module.exports = {
   purge: ["./src/**/*.js", "./src/**/*.jsx", "./src/**/*.ts", "./src/**/*.tsx"],
   darkMode: false,
   theme: {
-      theme: {
-          screens: {
-              'sm': '640px',
-              // => @media (min-width: 640px) { ... }
+      screens: {
+          'sm': '640px',
+          // => @media (min-width: 640px) { ... }
 
-              'md': '768px',
-              // => @media (min-width: 768px) { ... }
+          'md': '768px',
+          // => @media (min-width: 768px) { ... }
 
-              'lg': '1024px',
-              // => @media (min-width: 1024px) { ... }
+          'lg': '1024px',
+          // => @media (min-width: 1024px) { ... }
 
-              'xl': '1280px',
-              // => @media (min-width: 1280px) { ... }
+          'xl': '1280px',
+          // => @media (min-width: 1280px) { ... }
 
-              '2xl': '1536px',
-              // => @media (min-width: 1536px) { ... }
-          }
+          '2xl': '1536px',
+          // => @media (min-width: 1536px) { ... }
       },
       colors: {
-        black: '#000',
-        white: '#fff',
-        gray: {
-            50: '#f9f9f9',
-            100: '#f2f2f2',
-            200: '#dfdfdf',
-            300: '#cccccc',
-            400: '#a6a6a6',
-            500: '#808080',
-            600: '#737373',
-            700: '#606060',
-            800: '#4d4d4d',
-            900: '#3f3f3f'
-        },
+          black: '#000',
+          white: '#fff',
+          gray: {
+              50: '#f9f9f9',
+              100: '#f2f2f2',
+              200: '#dfdfdf',
+              300: '#cccccc',
+              400: '#a6a6a6',
+              500: '#808080',
+              600: '#737373',
+              700: '#606060',
+              800: '#4d4d4d',
+              900: '#3f3f3f'
+          },
           red: {
               50: '#fff2f2',
               100: '#ffe6e6',
@@ -49,30 +47,30 @@ module.exports = {
               800: '#990000',
               900: '#7d0000'
           },
-        royal: {
-          50: '#f3f4f5',
-          100: '#e8e9ea',
-          200: '#c4c7cb',
-          300: '#a1a5ac',
-          400: '#243b55',
-          500: '#141e30',
-          600: '#121b2b',
-          700: '#0f1724',
-          800: '#0c121d',
-          900: '#0a0f18'
-        },
-        lime: {
-            50: '#fcfff2',
-            100: '#f9ffe6',
-            200: '#efffbf',
-            300: '#e5ff99',
-            400: '#d2ff4d',
-            500: '#BFFF00',
-            600: '#ace600',
-            700: '#8fbf00',
-            800: '#739900',
-            900: '#5e7d00'
-        },
+          royal: {
+              50: '#f3f4f5',
+              100: '#e8e9ea',
+              200: '#c4c7cb',
+              300: '#a1a5ac',
+              400: '#243b55',
+              500: '#141e30',
+              600: '#121b2b',
+              700: '#0f1724',
+              800: '#0c121d',
+              900: '#0a0f18'
+          },
+          lime: {
+              50: '#fcfff2',
+              100: '#f9ffe6',
+              200: '#efffbf',
+              300: '#e5ff99',
+              400: '#d2ff4d',
+              500: '#BFFF00',
+              600: '#ace600',
+              700: '#8fbf00',
+              800: '#739900',
+              900: '#5e7d00'
+          },
           emerald: {
               50: '#f6fcf8',
               100: '#eefaf2',
@@ -145,6 +143,18 @@ module.exports = {
               800: '#064f99',
               900: '#05417d'
           },
+          blueRibbon: {
+              50: '#f8f7ff',
+              100: '#f0efff',
+              200: '#dad8ff',
+              300: '#c4c1ff',
+              400: '#9892ff',
+              500: '#6c63ff',
+              600: '#6159e6',
+              700: '#514abf',
+              800: '#413b99',
+              900: '#35317d'
+          },
           skyDark: '#e0eafc',
           skyLight: '#cfdef3',
           react: '#61DBFB',
@@ -152,16 +162,24 @@ module.exports = {
           craft: '#E5422B',
           bootstrap: '#563d7c',
           graphql: '#e535ab',
-          typescript: '#007acc'
+          typescript: '#007acc',
+          instagram: '#dd2a7b',
+          linkedin: '#0077b5',
+          messenger: '#00c6ff',
       },
     fontSize: {
-      '7xl': '5rem',
-      '8xl': '6rem',
-      '9xl': '7rem',
-        'lg': '2rem',
-       'md': '1.2rem',
-      'sm': '0.8rem',
-      'xs': '0.5rem'
+        'xs': '.75rem',
+        'sm': '.875rem',
+        'tiny': '.875rem',
+        'base': '1rem',
+        'lg': '1.125rem',
+        'xl': '1.25rem',
+        '2xl': '1.5rem',
+        '3xl': '1.875rem',
+        '4xl': '2.25rem',
+        '5xl': '3rem',
+        '6xl': '4rem',
+        '7xl': '5rem',
     },
       minHeight: {
           '1/4': '25%',

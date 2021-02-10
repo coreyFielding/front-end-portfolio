@@ -53,7 +53,7 @@ const HeroQuickLinks = ({links}) => {
         "row-start-8",
         "sm:col-start-1",
         "sm:col-end-4",
-        "sm:row-start-4",
+        "sm:row-start-7",
         "z-10",
     )
     return (
