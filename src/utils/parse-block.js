@@ -3,7 +3,8 @@ export const BlockType = {
     PROJECT: "project",
     SKILLS: "skills",
     ABOUT: "about",
-    CONTACT: "contact"
+    CONTACT: "contact",
+    RESUME: "resume"
 }
 
 export const parseHeroBlock = (block) => {
@@ -65,16 +66,34 @@ export const parseContactBlock = (block) => {
     }
 }
 
+export const parseResumeBlock = (block) => {
+    return {
+        education: {
+            type: 'education',
+            items: block.resume_education
+        },
+        experience: {
+            type: 'experience',
+            items: block.resume_experience
+        },
+
+        skills: {
+            type: 'skills',
+            items: block.resume_key_skills
+        }
+    }
+}
+
 const parsers = new Map([
     [BlockType.HERO, parseHeroBlock],
     [BlockType.ABOUT, parseAboutBlock],
     [BlockType.PROJECT, parseProjectBlock],
     [BlockType.SKILLS, parseSkillsBlock],
-    [BlockType.CONTACT, parseContactBlock]
+    [BlockType.CONTACT, parseContactBlock],
+    [BlockType.RESUME, parseResumeBlock]
 ])
 
 export default (data) => {
-    console.log(data)
     const block = data
     if (parsers.has(block._type)) {
         return parsers.get(block._type)(data)

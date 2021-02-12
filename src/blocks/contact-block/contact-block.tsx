@@ -6,10 +6,9 @@ import setupIconLibrary from "../../utils/setup-icon-library"
 setupIconLibrary()
 
 export default ({email, form, socials}) => {
-    console.log(socials)
     return (
         <section>
-            <div className="bg-blueRibbon-500 w-full sm:h-1/2">
+            <div className="bg-blueRibbon-500 w-full">
                 <div className="flex justify-between mx-auto w-2/3 h-full">
                     <div className="w-full sm:w-1/2">
                         <div className="px-3 py-10 sm:py-20 lg:px-0 text-cararra-50">
