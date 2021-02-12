@@ -1,5 +1,6 @@
 export const BlockType = {
     HERO: "hero",
+    BUTTON_GRID: "button-grid",
     PROJECT: "project",
     SKILLS: "skills",
     ABOUT: "about",
@@ -24,6 +25,17 @@ export const parseHeroBlock = (block) => {
             buttonUrl: column.column_buttonUrl
         })),
         status: block.status,
+    }
+}
+
+export const parseButtonGridBlock = (block) => {
+    return {
+        buttons: block.button.map((button) => ({
+            text: button.button_text,
+            url: button.button_url,
+            shape: button.button_shape,
+            colour: button.button_colour
+        }))
     }
 }
 
@@ -86,6 +98,7 @@ export const parseResumeBlock = (block) => {
 
 const parsers = new Map([
     [BlockType.HERO, parseHeroBlock],
+    [BlockType.BUTTON_GRID, parseButtonGridBlock],
     [BlockType.ABOUT, parseAboutBlock],
     [BlockType.PROJECT, parseProjectBlock],
     [BlockType.SKILLS, parseSkillsBlock],
