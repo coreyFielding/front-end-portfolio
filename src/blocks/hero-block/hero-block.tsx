@@ -34,8 +34,8 @@ const HeroText = ({title, subtitle, body}) => {
         "mx-3",
         "sm:mx-0",
         "col-start-1",
-        "sm:col-start-1",
-        "sm:col-end-4",
+        "sm:col-start-3",
+        "sm:col-end-5",
         "row-start-3",
         "z-10",
     )
@@ -50,10 +50,10 @@ const HeroText = ({title, subtitle, body}) => {
 const HeroQuickLinks = ({links}) => {
     const quicklinkClasses = classnames(
         "col-start-1",
-        "row-start-8",
-        "sm:col-start-1",
+        "row-start-5",
+        "sm:col-start-3",
         "sm:col-end-4",
-        "sm:row-start-7",
+        "sm:row-start-4",
         "z-10",
     )
     return (
@@ -150,7 +150,7 @@ export default (
         <FadeScroll id="hero-block" blockClasses={heroClasses}>
             <HeroText title={title} subtitle={subtitle} body={body}/>
             <HeroQuickLinks links={quicklinks}/>
-            <Image image={image} imageClasses={heroImageClasses} delay={1000} />
+            {/*<Image image={image} imageClasses={heroImageClasses} delay={1000} />*/}
             <div className="items-center justify-between relative">
                 {
                     columns?.length && (

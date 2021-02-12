@@ -73,16 +73,13 @@ type AboutBlockProps = {
 
 export default ({profile, bio, avatar, status, contact}: AboutBlockProps) => {
     const aboutCardClasses = classnames(
-        "sm:w-5/6",
+        "sm:max-w-6xl",
         "mb-5",
         "sm:mb-0",
-        "sm:mx-0",
         "sm:shadow-lg",
         "min-h-screen",
         "sm:min-h-3/4",
         "rounded-md",
-        "border",
-        "sm:border-0",
         "p-2",
         "pb-3",
         "transform",
