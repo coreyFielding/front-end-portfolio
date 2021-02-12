@@ -2,12 +2,12 @@ import React, {createRef} from "react"
 import Layout from "../components/layout/layout"
 import HeroBlock from "../blocks/hero-block"
 import AboutBlock from '../blocks/about-block'
+import ResumeBlock from '../blocks/resume-block'
 import ContactBlock from '../blocks/contact-block'
 import SkillsBlock from "../blocks/skills-block"
 import SEO from "../components/seo"
 import { graphql, Link } from 'gatsby'
 import parseData from '../utils/parse-block'
-import styled from "styled-components";
 
 // Landing page
 export default ({ data }) => {
@@ -18,6 +18,7 @@ export default ({ data }) => {
     const skillsBlock = (data || {}) ? parseData(data.allSanityLanding.edges[0].node._rawBlocks[2]) : []
     const projectBlock = (data || {}) ? parseData(data.allSanityLanding.edges[0].node._rawBlocks[3]) : []
     const contactBlock = (data || {}) ? parseData(data.allSanityLanding.edges[0].node._rawBlocks[5]) : []
+    const resumeBlock = (data || {}) ? parseData(data.allSanityLanding.edges[0].node._rawBlocks[6]) : []
     const pageLinks = pageNodes ? pageNodes.map((page) => ({path: page.path})) : []
     const skillsRef = createRef();
 
@@ -27,6 +28,7 @@ export default ({ data }) => {
             <div>
                 <HeroBlock {...heroBlock} skillsRef={skillsRef} />
                 <AboutBlock {...aboutBlock}/>
+                <ResumeBlock {...resumeBlock}/>
                 <ContactBlock {...contactBlock}/>
                 {/*<ProjectBlock {...projectBlock} />*/}
                 <SkillsBlock {...skillsBlock} ref={skillsRef}/>

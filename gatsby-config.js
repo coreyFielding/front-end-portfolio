@@ -37,6 +37,7 @@ module.exports = {
     `gatsby-plugin-postcss`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
-    `gatsby-source-sanity-transform-images`
+    `gatsby-source-sanity-transform-images`,
+    `gatsby-plugin-sass`
   ],
 }
